@@ -1,0 +1,7 @@
+---
+
+# network interface name
+interface : ens3
+
+# dhcp subnet for vpn users
+vpn_subnet : 172.27.27.0/24

@@ -1,0 +1,16 @@
+---
+
+- name: generate key for sign root cert centre
+  shell: pki --gen --type rsa --size 4096 --outform pem > /etc/ipsec.d/private/ca-key.pem
+
+- name: create root cert centre
+  shell: pki --self --ca --lifetime 3650 --in /etc/ipsec.d/private/ca-key.pem --type rsa --dn "CN=VPN root CA" --outform pem > /etc/ipsec.d/cacerts/ca-cert.pem
+
+- name: generate VPN server private key
+  shell: pki --gen --type rsa --size 4096 --outform pem > /etc/ipsec.d/private/server-key.pem
+
+- name: create and sign the VPN server certificate
+  shell: pki --pub --in /etc/ipsec.d/private/server-key.pem --type rsa | pki --issue --lifetime 3000 \
+         --cacert /etc/ipsec.d/cacerts/ca-cert.pem --cakey /etc/ipsec.d/private/ca-key.pem --dn "CN={{ external_ip }}" \
+         --san @{{ external_ip }} --san {{ external_ip }} --san {{ external_ip }} --flag serverAuth --flag ikeIntermediate \
+         --outform pem > /etc/ipsec.d/certs/server-cert.pem

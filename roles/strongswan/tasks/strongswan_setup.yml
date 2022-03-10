@@ -1,0 +1,13 @@
+---
+- block:
+    - name: generate ipsec.conf
+      template:
+        src: ipsec.conf
+        dest: /etc/ipsec.conf
+
+    - name: copy ipsec.secrets
+      copy:
+        src: ipsec.secrets
+        dest: /etc/ipsec.secrets
+  notify:
+    - Restart strongswan

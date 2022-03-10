@@ -1,0 +1,11 @@
+---
+
+- name: Install apps
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - strongswan
+    - strongswan-pki
+    - libcharon-extra-plugins
+    - libcharon-extauth-plugins
