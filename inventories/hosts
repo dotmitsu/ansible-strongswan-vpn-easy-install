@@ -1,2 +1,2 @@
 [strongswan]
-77.77.77.77
+server1 ansible_host=77.77.77.77
