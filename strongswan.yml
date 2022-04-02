@@ -4,6 +4,6 @@
   gather_facts: true
   become: yes
   roles:
-    - strongswan
+    - { role: strongswan, when: ansible_distribution == "Ubuntu" }
   tags:
     - strongswan
