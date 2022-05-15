@@ -2,6 +2,7 @@
 
 - name: Install apps
   package:
+    update_cache: yes
     name: "{{ item }}"
     state: present
   loop:

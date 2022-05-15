@@ -5,7 +5,7 @@
     name: strongswan-starter
     state: restarted
 
-- name: restart ufw
+- name: Restart ufw
   service:
     name: ufw
     state: restarted
