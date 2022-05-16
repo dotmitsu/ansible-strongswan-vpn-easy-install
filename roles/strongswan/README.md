@@ -24,7 +24,7 @@ Use this key and login/password from ipsec.secrets file for vpn client.
 Auth method EAP
 
 P.S.
-If you need to regenerate all certs, delete /etc/ipsec.d/private/ca-key.pem on remote host
+If you need to recreate all certs, delete /etc/ipsec.d/private/ca-key.pem on remote host
 and ansible role automaticaly will regenerate all necessary keys at the next start of role.
 
 OR
