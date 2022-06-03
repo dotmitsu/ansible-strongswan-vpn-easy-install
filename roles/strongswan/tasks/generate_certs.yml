@@ -4,7 +4,7 @@
   shell: pki --gen --type rsa --size 4096 --outform pem > /etc/ipsec.d/private/ca-key.pem
 
 - name: create root cert centre
-  shell: pki --self --ca --lifetime 3650 --in /etc/ipsec.d/private/ca-key.pem --type rsa --dn "CN=VPN root CA" --outform pem > /etc/ipsec.d/cacerts/ca-cert.pem
+  shell: pki --self --ca --lifetime 3650 --in /etc/ipsec.d/private/ca-key.pem --type rsa --dn "CN={{cn_name}}" --outform pem > /etc/ipsec.d/cacerts/ca-cert.pem
 
 - name: generate VPN server private key
   shell: pki --gen --type rsa --size 4096 --outform pem > /etc/ipsec.d/private/server-key.pem

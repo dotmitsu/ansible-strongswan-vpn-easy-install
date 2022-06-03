@@ -63,4 +63,4 @@
           -A ufw-before-forward --match policy --pol ipsec --dir in --proto esp -s {{ vpn_subnet }} -j ACCEPT
           -A ufw-before-forward --match policy --pol ipsec --dir out --proto esp -d {{ vpn_subnet }} -j ACCEPT
   notify:
-    - restart ufw
+    - Restart ufw

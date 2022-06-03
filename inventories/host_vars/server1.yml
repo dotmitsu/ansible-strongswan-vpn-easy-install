@@ -2,3 +2,6 @@
 
 # external ip of remote host
 external_ip : 77.77.77.77
+
+# root CA name
+cn_name : server 1 int root CA
