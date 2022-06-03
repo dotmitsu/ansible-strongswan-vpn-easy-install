@@ -5,38 +5,41 @@
     name: ufw
     state: present
 
-- block:
-    - name: Configure ufw defaults
-      ufw: direction={{ item.direction }} policy={{ item.policy }}
-      loop:
-        - { direction: "incoming", policy: "deny" }
-        - { direction: "outgoing", policy: "allow" }
+- name: Configure ufw defaults
+  ufw: direction={{ item.direction }} policy={{ item.policy }}
+  loop:
+    - { direction: "incoming", policy: "deny" }
+    - { direction: "outgoing", policy: "allow" }
+  notify:
+    - Restart ufw
 
-    - name: Configure ufw rules
-      ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
-      loop:
-        - { rule: "limit", port: "{{ ssh_port | default('22') }}", proto: "tcp" }
-        - { rule: "allow", port: "500", proto: "udp" }
-        - { rule: "allow", port: "4500", proto: "udp" }
+- name: Configure ufw rules
+  ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
+  loop:
+    - { rule: "limit", port: "{{ ssh_port | default('22') }}", proto: "tcp" }
+    - { rule: "allow", port: "500", proto: "udp" }
+    - { rule: "allow", port: "4500", proto: "udp" }
   notify:
     - Restart ufw
 
 - name: Enable ufw
   ufw: state=enabled
 
-- block:
-    # add lines if doesn't exist
-    - name: Configure /etc/ufw/sysctl.conf
-      lineinfile:
-        path: /etc/ufw/sysctl.conf
-        line: "{{ item }}"
-        create: yes
-      loop:
-        - "net/ipv4/ip_forward=1"
-        - "net/ipv4/conf/all/accept_redirects=0"
-        - "net/ipv4/conf/all/send_redirects=0"
-        - "net/ipv4/ip_no_pmtu_disc=1"
+# add lines if doesn't exist
+- name: Configure /etc/ufw/sysctl.conf
+  lineinfile:
+    path: /etc/ufw/sysctl.conf
+    line: "{{ item }}"
+    create: yes
+  loop:
+    - "net/ipv4/ip_forward=1"
+    - "net/ipv4/conf/all/accept_redirects=0"
+    - "net/ipv4/conf/all/send_redirects=0"
+    - "net/ipv4/ip_no_pmtu_disc=1"
+  notify:
+    - Restart ufw
 
+- block:
     - name: insert *nat and * mangle into /etc/ufw/before.rules
       blockinfile:
         path: /etc/ufw/before.rules

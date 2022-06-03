@@ -32,3 +32,9 @@ OR
 start ansible-playbook with variable generate_certs=true
 
 ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"
+
+P.S.S
+If you need use another port for ssh connection, you can add in server1.yml variable ssh_port. Example:<br/>
+ssh_port : 35022
+
+When ansible playbook will be started, this port will automaticaly be added to ufw rules instead of 22 port.
