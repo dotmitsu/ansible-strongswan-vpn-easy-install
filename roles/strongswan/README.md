@@ -10,11 +10,10 @@ vpn_username3 : EAP "password"
 Delete ipsec.secrets and create your ipsec.secrets file in files directory 
 
 2) Change inventories, group_vars, host_vars values to your own 
-3) Replace remote_user = dotmitsu to your user in ansible.cfg
-4) Start playbook
+3) Start playbook
 ansible-playbook -i ./inventories/hosts ./strongswan.yml
 
-5) Copy /etc/ipsec.d/cacerts/ca-cert.pem from remote host to local host /etc/ipsec.d/cacerts/ca-cert.pem
+4) Copy /etc/ipsec.d/cacerts/ca-cert.pem from remote host to local host /etc/ipsec.d/cacerts/ca-cert.pem
 
 
 It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine. 
