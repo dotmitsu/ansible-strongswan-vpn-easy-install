@@ -9,3 +9,6 @@
   service:
     name: ufw
     state: restarted
+
+- name: Reread ipsec.secrets
+  shell: ipsec rereadsecrets
