@@ -8,7 +8,7 @@
     - Restart strongswan
 
 - name: copy ipsec.secrets
-  copy:
+  template:
     src: ipsec.secrets
     dest: /etc/ipsec.secrets
   notify:

@@ -1,25 +1,15 @@
-1) ipsec.secrets file is encrypted by ansible-vault
+This role tested on Ubuntu 20.04.
 
-ipsec.secrets structure is:
-
-: RSA "server-key.pem"<br/>
-vpn_username1 : EAP "password"<br/>
-vpn_username2 : EAP "password"<br/>
-vpn_username3 : EAP "password"
-
-Delete ipsec.secrets and create your ipsec.secrets file in files directory 
-
-2) Change inventories, group_vars, host_vars values to your own 
-3) Start playbook
+1) Change inventories, group_vars, host_vars values to your own 
+2) Start playbook
 ansible-playbook -i ./inventories/hosts ./strongswan.yml
 
-4) Copy /etc/ipsec.d/cacerts/ca-cert.pem from remote host to local host /etc/ipsec.d/cacerts/ca-cert.pem
-
+3) Copy /etc/ipsec.d/cacerts/ca-cert.pem from remote host to local host /etc/ipsec.d/cacerts/ca-cert.pem
 
 It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine. 
 Otherwise, the vpn client may not accept it.
 
-Use this key and login/password from ipsec.secrets file for vpn client.
+Use this key and login/password for vpn client.
 Auth method EAP
 
 P.S.
@@ -28,15 +18,12 @@ and ansible role automaticaly will regenerate all necessary keys at the next sta
 
 OR
 
-start ansible-playbook with variable generate_certs=true
+run ansible-playbook with variable generate_certs=true
 
 ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"
 
-P.S.S
-If you need use another port for ssh connection, you can add in server1.yml variable ssh_port. This port will be added to UFW. <b>Example:</b><br/>
-ssh_port : 35022
+P.S.S.
+When you add or edit user ipsec.service doesn't restart. It reread the config.
+If for some reason you need to restart ipsec.service, run ansible-playbook with ipsec_restart=true
 
-And need add to ./inventories/groups_vars/strongswan
-ansible_port: 35022
-
-When ansible playbook will be started, this port will automaticaly be added to ufw rules instead of 22 port.
+ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "ipsec_restart=true"
