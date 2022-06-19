@@ -1,3 +1,4 @@
-Don't forget replace remote_user = dotmitsu to your user in ansible.cfg
+This repository now has the following playbooks:
+- strongswan
 
 Additional README.md are in each role's catalog
