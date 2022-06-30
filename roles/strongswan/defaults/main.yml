@@ -1,4 +1,0 @@
----
-
-generate_certs : false
-ipsec_restart : false
