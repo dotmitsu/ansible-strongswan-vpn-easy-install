@@ -19,7 +19,7 @@
 # ufw config
 - import_tasks: ufw_config.yml
 
-# restart strongswan if ipsec_restart=true
+# restart strongswan if ipsec_restart is defined
 - name: Restart strongswan by ipsec_restart command
   service:
     name: strongswan-starter
