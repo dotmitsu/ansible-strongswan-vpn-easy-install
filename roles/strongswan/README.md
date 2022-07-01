@@ -23,7 +23,8 @@ run ansible-playbook with variable generate_certs=true
 ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"
 
 P.S.S.
-When you add or edit user ipsec.service doesn't restart. It reread the config.
-If for some reason you need to restart ipsec.service, run ansible-playbook with ipsec_restart=true
+When you add or edit user credentials, ipsec.service doesn't restart. It rereads the config. Works well in 90 percent
+cases. You can write some symbols in username or password and strongswan may crash when try to read it.
+In this case you need to change credentials and restart ipsec.service, run ansible-playbook with ipsec_restart=true
 
 ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "ipsec_restart=true"
