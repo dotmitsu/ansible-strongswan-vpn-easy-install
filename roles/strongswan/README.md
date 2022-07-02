@@ -33,8 +33,8 @@ In this case you need to change credentials and restart ipsec.service, run ansib
 Copy <code>/etc/ipsec.d/cacerts/ca-cert.pem</code> from remote host to local host 
 <code>/etc/ipsec.d/cacerts/ca-cert.pem</code>
 
-It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine. 
-Otherwise, the vpn client may not accept it.
+It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine.<br> 
+Otherwise, the vpn client may not accept it.<br>
 Use any vpn client you want.
 
 Auth method EAP<br>
