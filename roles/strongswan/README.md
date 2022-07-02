@@ -44,6 +44,7 @@ Open <code>Manage Computer Certificates</code>.<br>
 Add ca-cert.pem to <code>Trusted Root Certification Authorities</code>.
 
 By steps:<br>
+
 1)
 <img alt="Windows_1" src="../../README_src/strongswan/Windows/Windows_01.png" width="600">
 
