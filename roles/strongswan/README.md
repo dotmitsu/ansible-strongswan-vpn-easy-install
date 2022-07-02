@@ -1,4 +1,5 @@
 <h1><b>Server setup</b></h1>
+
 This role tested on Ubuntu 20.04.
 
 1) Change inventories, group_vars, host_vars values to your own 
@@ -72,7 +73,9 @@ After that you can create VPN connection in Windows Settings.
 VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 11)
 
 <h2><b>Android</b></h2>
-You have 2 ways:
+
+You have 2 ways:<br>
+
 1) Use official application from Play Market <code>strongSwan VPN Client</code>
 2) Use Android settings and create VPN Connection.
 
