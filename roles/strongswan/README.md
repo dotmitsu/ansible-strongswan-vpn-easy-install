@@ -83,8 +83,8 @@ VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 11)
 
 1) Download ca-cert.pem using Safari (it is important use Safari browser).
    System will write that you can import certificate. Do it.
-2) After that go to Settings <code>General -> VPN -> Add VPN Configuration</code>
-   Type: IKEv2
+2) After that go to Settings <code>General -> VPN -> Add VPN Configuration</code><br>
+   Type: IKEv2<br>
    Server: your <code>server address</code><br>
    Remote ID: your <code>server address</code><br>
    Local ID: your <code>login</code><br>
