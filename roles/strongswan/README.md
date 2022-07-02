@@ -77,6 +77,7 @@ You have 2 ways:
 2) Use Android settings and create VPN Connection.
 
 <h3>The 1 way:</h3>
+
 1) Install the application <code>strongSwan VPN Client</code>
 
 <img alt="Android_1" src="../../README_src/strongswan/Android/the_1_way/Android_01.png" width="300">
