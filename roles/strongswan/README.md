@@ -48,29 +48,49 @@ By steps:<br>
 
 1)
 <img alt="Windows_1" src="../../README_src/strongswan/Windows/Windows_01.png" width="600">
+<br><br>
 
 2)
 <img alt="Windows_2" src="../../README_src/strongswan/Windows/Windows_02.png" width="600">
+<br><br>
 
 3)
 <img alt="Windows_3" src="../../README_src/strongswan/Windows/Windows_03.png" width="600">
+<br><br>
 
 4)
 Choose All Files(&ast;.&ast;)
 
 <img alt="Windows_4" src="../../README_src/strongswan/Windows/Windows_04.png" width="600">
+<br><br>
 
 5)
 <img alt="Windows_5" src="../../README_src/strongswan/Windows/Windows_05.png" width="600">
+<br><br>
 
 6)
 <img alt="Windows_6" src="../../README_src/strongswan/Windows/Windows_06.png" width="600">
+<br><br>
 
 7)
 <img alt="Windows_7" src="../../README_src/strongswan/Windows/Windows_07.png" width="600"><br>
 
 After that you can create VPN connection in Windows Settings. 
 VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 11)
+<br>
+
+<h2><b>iOS</b></h2>
+
+1) Download ca-cert.pem using Safari (it is important use Safari browser).
+   System will write that you can import certificate. Do it.
+2) After that go to Settings <code>General -> VPN -> Add VPN Configuration</code>
+   Type: IKEv2
+   Server: your <code>server address</code><br>
+   Remote ID: your <code>server address</code><br>
+   Local ID: your <code>login</code><br>
+   User Authentication: <code>Username</code>
+   Username: your <code>login</code><br>
+   Password: your <code>password</code><br>
 
 <h2><b>Android</b></h2>
 
@@ -84,32 +104,40 @@ You have 2 ways:<br>
 1) Install the application <code>strongSwan VPN Client</code>
 
 <img alt="Android_1" src="../../README_src/strongswan/Android/the_1_way/Android_01.png" width="300">
+<br><br>
 
 2)
 <img alt="Android_2" src="../../README_src/strongswan/Android/the_1_way/Android_02.png" width="300">
+<br><br>
 
 3)
 <img alt="Android_3" src="../../README_src/strongswan/Android/the_1_way/Android_03.png" width="300">
+<br><br>
 
 4)
 <img alt="Android_4" src="../../README_src/strongswan/Android/the_1_way/Android_04.png" width="300">
+<br><br>
 
 5) Tap to Import certificate and choose ca-cert.pem file.
 
 <img alt="Android_5" src="../../README_src/strongswan/Android/the_1_way/Android_05.png" width="300">
+<br><br>
 
 6) Uncheck <code>Select CA certificate</code> and choose imported certificate. 
 
 <img alt="Android_6" src="../../README_src/strongswan/Android/the_1_way/Android_06.png" width="300">
+<br><br>
 
 7) Sometimes the imported certificate is not displayed. In this case, go back
 and open this menu again.
 
 <img alt="Android_7" src="../../README_src/strongswan/Android/the_1_way/Android_07.png" width="300">
+<br><br>
 
 8) You can add VPN shortcut to Android top menu.
 
 <img alt="Android_8" src="../../README_src/strongswan/Android/the_1_way/Android_08.png" width="300">
+<br><br>
 
 <h3>The 2 way:</h3>
 
@@ -121,18 +149,5 @@ Type: IKEv2/IPSec MSCHAPv2<br>
 Server address: your <code>server address</code><br>
 IPSec CA certificate - choose your imported certificate<br>
 IPSec identifier: your <code>login</code><br>
-Username: your <code>login</code><br>
-Password: your <code>password</code><br>
-
-<h2><b>iOS</b></h2>
-
-1) Download ca-cert.pem using Safari (it is important use Safari browser).
-System will write that you can import certificate. Do it.
-2) After that go to Settings <code>General -> VPN -> Add VPN Configuration</code>
-Type: IKEv2
-Server: your <code>server address</code><br>
-Remote ID: your <code>server address</code><br>
-Local ID: your <code>login</code><br>
-User Authentication: <code>Username</code>
 Username: your <code>login</code><br>
 Password: your <code>password</code><br>
