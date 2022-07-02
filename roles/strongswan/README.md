@@ -25,7 +25,7 @@ cases. You can write some symbols in username or password and strongswan may cra
 In this case you need to change credentials and restart ipsec.service, run ansible-playbook with ipsec_restart=true
 
 <code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "ipsec_restart=true"</code>
-</p>
+</p><br>
 
 <h1><b>Clients setup</b></h1>
 
@@ -33,7 +33,7 @@ In this case you need to change credentials and restart ipsec.service, run ansib
 Copy <code>/etc/ipsec.d/cacerts/ca-cert.pem</code> from remote host to local host 
 <code>/etc/ipsec.d/cacerts/ca-cert.pem</code>
 
-It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine.<br> 
+It is necessary that the key is located in this path /etc/ipsec.d/cacerts/ca-cert.pem on local mashine. 
 Otherwise, the vpn client may not accept it.<br>
 Use any vpn client you want.
 
