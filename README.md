@@ -30,7 +30,7 @@ In this case you need to change credentials and restart ipsec.service, run ansib
 3) UFW doesn't delete added rules. For example: If you used ssh port 22, and after that you changed it 
 to another (for example 20022), the rule with 22 port will remain. You need to remove it manually.
 This is done in order not to delete other rules on the server.
-</p>p><br>
+</p><br>
 
 <h1><b>Clients setup</b></h1>
 
