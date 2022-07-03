@@ -5,25 +5,35 @@
     name: ufw
     state: present
 
-- name: Configure ufw defaults
-  ufw: direction={{ item.direction }} policy={{ item.policy }}
-  loop:
-    - { direction: "incoming", policy: "deny" }
-    - { direction: "outgoing", policy: "allow" }
-  notify:
-    - Restart ufw
+- name: UFW ssh limit
+  ufw:
+    rule: limit
+    port: "{{ ansible_port | default('ssh') }}"
+    proto: tcp
 
-- name: Configure ufw rules
-  ufw: rule={{ item.rule }} port={{ item.port }} proto={{ item.proto }}
-  loop:
-    - { rule: "limit", port: "{{ ssh_port | default('22') }}", proto: "tcp" }
-    - { rule: "allow", port: "500", proto: "udp" }
-    - { rule: "allow", port: "4500", proto: "udp" }
-  notify:
-    - Restart ufw
+- name: UFW 500/udp Allow
+  ufw:
+    rule: allow
+    port: 500
+    proto: udp
 
-- name: Enable ufw
-  ufw: state=enabled
+- name: UFW 4500/udp Allow
+  ufw:
+    rule: allow
+    port: 4500
+    proto: udp
+
+- name: UFW outgoing Allow
+  ufw:
+    state: enabled
+    direction: outgoing
+    default: allow
+
+- name: UFW incoming Deny
+  ufw:
+    state: enabled
+    direction: incoming
+    default: deny
 
 # add lines if doesn't exist
 - name: Configure /etc/ufw/sysctl.conf

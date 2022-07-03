@@ -25,7 +25,12 @@ cases. You can write some symbols in username or password and strongswan may cra
 In this case you need to change credentials and restart ipsec.service, run ansible-playbook with ipsec_restart=true
 
 <code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "ipsec_restart=true"</code>
-</p><br>
+</p>
+<p>
+3) UFW doesn't delete added rules. For example: If you used ssh port 22, and after that you changed it 
+to another (for example 20022), the rule with 22 port will remain. You need to remove it manually.
+This is done in order not to delete other rules on the server.
+</p>p><br>
 
 <h1><b>Clients setup</b></h1>
 

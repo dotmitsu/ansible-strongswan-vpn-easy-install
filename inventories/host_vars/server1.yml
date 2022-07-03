@@ -6,10 +6,9 @@ external_ip : 77.77.77.77
 # root CA name. You can change to any name
 cn_name : server 1 int root CA
 
-# uncomment to use another ssh port. Both need to be uncommented.
-# The first variable switch ansible to use another port, the second one add rule to ufw.
+# uncomment to use another ssh port.
+# This variable specify ansible port, and also add this port to UFW rule before turning it on.
 #ansible_port : 35022
-#ssh_port : 35022
 
 # login and password for authentication
 credentials :
