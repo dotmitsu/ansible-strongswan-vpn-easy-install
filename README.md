@@ -92,7 +92,7 @@ VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 11)
    Type: IKEv2<br>
    Server: your <code>server address</code><br>
    Remote ID: your <code>server address</code><br>
-   User Authentication: <code>Username</code>
+   User Authentication: <code>Username</code><br>
    Username: your <code>login</code><br>
    Password: your <code>password</code><br>
 
