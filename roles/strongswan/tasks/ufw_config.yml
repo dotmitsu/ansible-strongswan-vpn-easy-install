@@ -23,13 +23,13 @@
     port: 4500
     proto: udp
 
-- name: UFW outgoing Allow
+- name: UFW default outgoing Allow
   ufw:
     state: enabled
     direction: outgoing
     default: allow
 
-- name: UFW incoming Deny
+- name: UFW default incoming Deny
   ufw:
     state: enabled
     direction: incoming
