@@ -80,8 +80,8 @@ Choose All Files(&ast;.&ast;) and select ca-cert.pem
 7)
 <img alt="Windows_7" src="README_src/Windows/Windows_07.png" width="600"><br>
 
-After that you can create VPN connection in Windows Settings. 
-VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 11)
+8) After that you can create VPN connection in Windows Settings. 
+VPN Type: IKEv2, Authenticate by Login/Password. (Tested on Windows 10, 11)
 <br>
 
 <h2><b>iOS</b></h2>
