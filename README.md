@@ -127,7 +127,8 @@ You have 2 ways:<br>
 <img alt="Android_5" src="README_src/Android/the_1_way/Android_05.png" width="300">
 <br><br>
 
-6) Fill in the fields, uncheck <code>Select CA certificate</code> and choose imported certificate. 
+6) Go back to main screen and choose "Add VPN Profile"". Fill in the fields, uncheck <code>Select CA certificate</code> 
+and choose imported certificate. 
 
 <img alt="Android_6" src="README_src/Android/the_1_way/Android_06.png" width="300">
 <br><br>
