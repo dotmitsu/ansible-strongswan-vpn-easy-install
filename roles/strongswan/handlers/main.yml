@@ -5,10 +5,5 @@
     name: strongswan-starter
     state: restarted
 
-- name: Restart ufw
-  service:
-    name: ufw
-    state: restarted
-
 - name: Reread ipsec.secrets
   shell: ipsec rereadsecrets

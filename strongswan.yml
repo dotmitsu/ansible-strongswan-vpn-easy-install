@@ -1,8 +1,20 @@
 ---
 
+# UFW setup
 - hosts: strongswan
   gather_facts: true
   become: yes
+  any_errors_fatal: True
+  roles:
+    - { role: ufw, when: ansible_distribution == "Ubuntu" }
+  tags:
+    - ufw
+
+# strongswan setup
+- hosts: strongswan
+  gather_facts: true
+  become: yes
+  any_errors_fatal: True
   roles:
     - { role: strongswan, when: ansible_distribution == "Ubuntu" }
   tags:

@@ -1,0 +1,7 @@
+---
+
+- name: Install UFW
+  package:
+    update_cache: yes
+    name: ufw
+    state: present

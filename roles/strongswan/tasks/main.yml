@@ -1,8 +1,9 @@
 ---
 
-# install apps
+# install strongswan
 - import_tasks: install.yml
 
+# check that /etc/ipsec.d/private/ca-key.pem exists and put result to stat_result
 - name: Check that /etc/ipsec.d/private/ca-key.pem exists
   stat:
     path: /etc/ipsec.d/private/ca-key.pem
@@ -13,14 +14,11 @@
 - import_tasks: generate_certs.yml
   when: not stat_result.stat.exists or generate_certs is defined
 
-# setup strongswan vpn
-- import_tasks: strongswan_config.yml
-
-# ufw config
-- import_tasks: ufw_config.yml
+# strongswan configuration
+- import_tasks: config.yml
 
 # start strongswan
-- name: start strongswan
+- name: strongswan started
   service:
     name: strongswan-starter
     state: started

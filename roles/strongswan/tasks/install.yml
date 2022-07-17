@@ -1,6 +1,6 @@
 ---
 
-- name: Install apps
+- name: Install strongswan
   package:
     update_cache: yes
     name: "{{ item }}"

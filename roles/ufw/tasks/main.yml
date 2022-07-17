@@ -1,10 +1,9 @@
 ---
 
-- name: Install ufw
-  package:
-    name: ufw
-    state: present
+# install UFW
+- import_tasks: install.yml
 
+# UFW configuration
 - name: UFW ssh limit
   ufw:
     rule: limit
