@@ -14,5 +14,3 @@
            --cacert /etc/ipsec.d/cacerts/ca-cert.pem --cakey /etc/ipsec.d/private/ca-key.pem --dn "CN={{ external_ip }}" \
            --san @{{ external_ip }} --san {{ external_ip }} --san {{ external_ip }} --flag serverAuth --flag ikeIntermediate \
            --outform pem > /etc/ipsec.d/certs/server-cert.pem
-  notify:
-    - Restart strongswan
