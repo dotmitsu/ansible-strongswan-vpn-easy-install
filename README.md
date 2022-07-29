@@ -20,14 +20,7 @@ run ansible-playbook with variable generate_certs=true
 <code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"</code>
 </p>
 <p>
-2) When you add or edit user credentials, ipsec.service doesn't restart. It rereads the config. Works well in 90 percent
-cases. You can write some symbols in username or password and strongswan may crash when try to read it.
-In this case you need to change credentials and restart ipsec.service, run ansible-playbook with ipsec_restart=true
-
-<code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "ipsec_restart=true"</code>
-</p>
-<p>
-3) UFW doesn't delete added rules. For example: If you used ssh port 22, and after that you changed it 
+2) UFW doesn't delete added rules. For example: If you used ssh port 22, and after that you changed it 
 to another (for example 20022), the rule with 22 port will remain. You need to remove it manually.
 This is done in order not to delete other rules on the server.
 </p>
