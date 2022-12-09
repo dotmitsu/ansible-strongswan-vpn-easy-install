@@ -2,7 +2,7 @@
 
 This role tested on Ubuntu 20.04.
 
-1) Change inventories, group_vars, host_vars values to your own 
+1) Change inventories (hosts, group_vars, host_vars) values to your own 
 2) Start playbook<br>
 <p>
 <code>ansible-playbook -i ./inventories/hosts ./strongswan.yml</code>
