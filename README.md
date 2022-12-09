@@ -10,14 +10,14 @@ This role tested on Ubuntu 20.04.
 <br>
 <b>Recommendations</b><br>
 <p>
-1) If you need to recreate all certs, delete /etc/ipsec.d/private/ca-key.pem on remote host
-and ansible role automaticaly will regenerate all necessary keys at the next start of role.
+1) If you need to recreate all certs, run ansible-playbook with variable generate_certs=true
+
+<code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"</code>
 
 OR
 
-run ansible-playbook with variable generate_certs=true
-
-<code>ansible-playbook -i ./inventories/hosts ./strongswan.yml -e "generate_certs=true"</code>
+Delete /etc/ipsec.d/private/ca-key.pem on remote host
+and ansible role automaticaly will regenerate all necessary keys at the next start of role.
 </p>
 <p>
 2) UFW doesn't delete added rules. For example: If you used ssh port 22, and after that you changed it 
