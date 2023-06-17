@@ -10,3 +10,6 @@
     - strongswan-pki
     - libcharon-extra-plugins
     - libcharon-extauth-plugins
+    - libstrongswan-extra-plugins
+    - libtss2-tcti-tabrmd0
+    - strongswan-swanctl
