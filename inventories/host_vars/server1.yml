@@ -1,5 +1,9 @@
 ---
 
+# network interface name.
+# Change this parameter to your interface name. Can see with command: ip -c a
+interface : ens3
+
 # external ip of remote host
 external_ip : 77.77.77.77
 
