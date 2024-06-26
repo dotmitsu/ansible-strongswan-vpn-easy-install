@@ -2,8 +2,9 @@
 
 This role tested on Ubuntu 20.04.
 
-1) Change inventories (hosts, group_vars, host_vars) values to your own 
-2) Start playbook<br>
+1) Install ufw ansible module <code>ansible-galaxy collection install community.general</code>
+2) Change inventories (hosts, group_vars, host_vars) values to your own 
+3) Start playbook<br>
 <p>
 <code>ansible-playbook -i ./inventories/hosts ./strongswan.yml</code>
 </p>
