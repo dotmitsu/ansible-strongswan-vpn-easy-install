@@ -22,6 +22,18 @@
     port: 4500
     proto: udp
 
+- name: UFW 80/tcp Allow
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: UFW 443/tcp Allow
+  ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
 - name: UFW default outgoing Allow
   ufw:
     state: enabled
@@ -34,7 +46,7 @@
     direction: incoming
     default: deny
 
-# add lines if doesn't exist
+# add lines if it doesn't exist
 - name: Configure /etc/ufw/sysctl.conf
   lineinfile:
     path: /etc/ufw/sysctl.conf
@@ -48,29 +60,8 @@
   notify:
     - Restart ufw
 
-- block:
-    - name: insert *nat and * mangle into /etc/ufw/before.rules
-      blockinfile:
-        path: /etc/ufw/before.rules
-        insertbefore: '\*filter'
-        marker: "# {mark} ANSIBLE MANAGED BLOCK *nat * mangle"
-        block: |
-          *nat
-          -A POSTROUTING -s {{ vpn_subnet }} -o {{ interface }} -m policy --pol ipsec --dir out -j ACCEPT
-          -A POSTROUTING -s {{ vpn_subnet }} -o {{ interface }} -j MASQUERADE
-          COMMIT
+# ufw rules ipv4
+- import_tasks: ufw_rules/ipv4_rules.yml
 
-          *mangle
-          -A FORWARD --match policy --pol ipsec --dir in -s {{ vpn_subnet }} -o {{ interface }} -p tcp -m tcp --tcp-flags SYN,RST SYN -m tcpmss --mss 1361:1536 -j TCPMSS --set-mss 1360
-          COMMIT
-
-    - name: insert ufw-before-forward into /etc/ufw/before.rules
-      blockinfile:
-        path: /etc/ufw/before.rules
-        insertafter: '# End required lines'
-        marker: "# {mark} ANSIBLE MANAGED BLOCK ufw-before-forward"
-        block: |
-          -A ufw-before-forward --match policy --pol ipsec --dir in --proto esp -s {{ vpn_subnet }} -j ACCEPT
-          -A ufw-before-forward --match policy --pol ipsec --dir out --proto esp -d {{ vpn_subnet }} -j ACCEPT
-  notify:
-    - Restart ufw
+# ufw rules ipv6
+- import_tasks: ufw_rules/ipv6_rules.yml

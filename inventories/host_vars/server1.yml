@@ -1,14 +1,19 @@
 ---
+# DHCPv6 subnet for vpn users
+ipv6: false
+strongswan_vpn_subnet_v6: fd00:1234:5678:9abc::/119
+strongswan_vpn_dns_v6: 2606:4700:4700::1111
+external_ip_v6: 2a00:1ca8:2e:4700::de64:8253
 
 # network interface name.
 # Change this parameter to your interface name. Can see with command: ip -c a
-interface : ens3
+interface: ens3
 
 # external ip of remote host
-external_ip : 77.77.77.77
+external_ip_v4: 77.77.77.77
 
 # root CA name. You can change to any name
-cn_name : server 1 int root CA
+cn_name: server 1 int root CA
 
 # uncomment to use another ssh port. This variable specify ansible port,
 # and also add this port to UFW rule before turning it on. If you used 22 port, and then change it to another,
@@ -17,6 +22,6 @@ cn_name : server 1 int root CA
 #ansible_port : 35022
 
 # login and password for authentication. You can add as many users as you want
-credentials :
+strongswan_credentials:
   - { login: "user1_vpn", password: "PASSWORD_FOR_USER1" }
   - { login: "user2_vpn", password: "PASSWORD_FOR_USER2" }

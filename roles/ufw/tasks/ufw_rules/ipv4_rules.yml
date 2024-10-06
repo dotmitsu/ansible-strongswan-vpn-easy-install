@@ -1,0 +1,27 @@
+---
+- block:
+    - name: insert *nat and * mangle into /etc/ufw/before.rules
+      blockinfile:
+        path: /etc/ufw/before.rules
+        insertbefore: '\*filter'
+        marker: "# {mark} ANSIBLE MANAGED BLOCK *nat * mangle"
+        block: |
+          *nat
+          -A POSTROUTING -s {{ strongswan_vpn_subnet_v4 }} -o {{ interface }} -m policy --pol ipsec --dir out -j ACCEPT
+          -A POSTROUTING -s {{ strongswan_vpn_subnet_v4 }} -o {{ interface }} -j MASQUERADE
+          COMMIT
+
+          *mangle
+          -A FORWARD --match policy --pol ipsec --dir in -s {{ strongswan_vpn_subnet_v4 }} -o {{ interface }} -p tcp -m tcp --tcp-flags SYN,RST SYN -m tcpmss --mss 1361:1536 -j TCPMSS --set-mss 1360
+          COMMIT
+
+    - name: insert ufw-before-forward into /etc/ufw/before.rules
+      blockinfile:
+        path: /etc/ufw/before.rules
+        insertafter: '# End required lines'
+        marker: "# {mark} ANSIBLE MANAGED BLOCK ufw-before-forward"
+        block: |
+          -A ufw-before-forward --match policy --pol ipsec --dir in --proto esp -s {{ strongswan_vpn_subnet_v4 }} -j ACCEPT
+          -A ufw-before-forward --match policy --pol ipsec --dir out --proto esp -d {{ strongswan_vpn_subnet_v4 }} -j ACCEPT
+  notify:
+    - Restart ufw

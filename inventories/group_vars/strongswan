@@ -1,5 +1,5 @@
 ---
 
 # dhcp subnet for vpn users
-vpn_subnet : 172.27.27.0/24
-vpn_dns : 8.8.8.8,8.8.4.4
+strongswan_vpn_subnet_v4: 172.27.26.0/23
+strongswan_vpn_dns_v4: 1.1.1.1

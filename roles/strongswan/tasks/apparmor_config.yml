@@ -1,0 +1,55 @@
+---
+# check that file exists and write result to variadble apparmor_stat_charon
+- name: Check that /etc/apparmor.d/disable/usr.lib.ipsec.charon exists
+  stat:
+    path: /etc/apparmor.d/disable/usr.lib.ipsec.charon
+  register: apparmor_stat_charon
+
+# check that file exists and write result to variadble apparmor_stat_stroke
+- name: Check that /etc/apparmor.d/disable/usr.lib.ipsec.stroke exists
+  stat:
+    path: /etc/apparmor.d/disable/usr.lib.ipsec.stroke
+  register: apparmor_stat_stroke
+
+- block:
+    # reload AppArmor profiles to update profiles list
+    - name: Reload AppArmor profiles
+      ansible.builtin.service:
+        name: apparmor
+        state: reloaded
+
+    # create symlink to file only if symlink doesn't exist
+    - name: Create symbolic link for charon AppArmor profile
+      file:
+        src: "/etc/apparmor.d/usr.lib.ipsec.charon"
+        dest: "/etc/apparmor.d/disable/usr.lib.ipsec.charon"
+        state: link
+      when: not apparmor_stat_charon.stat.exists
+
+    # create symlink to file only if symlink doesn't exist
+    - name: Create symbolic link for stroke AppArmor profile
+      file:
+        src: "/etc/apparmor.d/usr.lib.ipsec.stroke"
+        dest: "/etc/apparmor.d/disable/usr.lib.ipsec.stroke"
+        state: link
+      when: not apparmor_stat_stroke.stat.exists
+
+    - name: Disable AppArmor profile for usr.lib.ipsec.charon
+      command: apparmor_parser -R /etc/apparmor.d/disable/usr.lib.ipsec.charon
+
+    - name: Disable AppArmor profile for usr.lib.ipsec.stroke
+      command: apparmor_parser -R /etc/apparmor.d/disable/usr.lib.ipsec.stroke
+  # delete simbolic links if error in block
+  rescue:
+    - name: Remove symbolic link /etc/apparmor.d/disable/usr.lib.ipsec.charon
+      file:
+        path: "/etc/apparmor.d/disable/usr.lib.ipsec.charon"
+        state: absent
+    - name: Remove symbolic link /etc/apparmor.d/disable/usr.lib.ipsec.stroke
+      file:
+        path: "/etc/apparmor.d/disable/usr.lib.ipsec.stroke"
+        state: absent
+  notify:
+    - Restart strongswan
+  # this when for block
+  when: not apparmor_stat_charon.stat.exists or not apparmor_stat_stroke.stat.exists

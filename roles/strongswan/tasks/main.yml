@@ -1,7 +1,13 @@
 ---
 
-# install strongswan
+# install StrongSwan
 - import_tasks: install.yml
+
+# strongswan configuration
+- import_tasks: config.yml
+
+# turn off AppArmor for StrongSwan
+- import_tasks: apparmor_config.yml
 
 # check that /etc/ipsec.d/private/ca-key.pem exists and put result to stat_result
 - name: Check that /etc/ipsec.d/private/ca-key.pem exists
@@ -13,9 +19,6 @@
 # /etc/ipsec.d/private/ca-key.pem doesn't exist
 - import_tasks: generate_certs.yml
   when: not stat_result.stat.exists or generate_certs is defined
-
-# strongswan configuration
-- import_tasks: config.yml
 
 # start strongswan
 - name: strongswan started
