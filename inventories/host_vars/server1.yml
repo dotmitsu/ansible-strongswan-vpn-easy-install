@@ -3,7 +3,6 @@
 ipv6: false
 strongswan_vpn_subnet_v6: fd00:1234:5678:9abc::/119
 strongswan_vpn_dns_v6: 2606:4700:4700::1111
-external_ip_v6: 2a00:1ca8:2e:4700::de64:8253
 
 # network interface name.
 # Change this parameter to your interface name. Can see with command: ip -c a
