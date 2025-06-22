@@ -4,7 +4,7 @@
 - import_tasks: install.yml
 
 # UFW configuration
-- name: UFW ssh limit
+- name: UFW ssh allow
   ufw:
     rule: allow
     port: "{{ ansible_port | default('ssh') }}"
