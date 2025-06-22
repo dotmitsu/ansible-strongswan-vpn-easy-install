@@ -6,7 +6,7 @@
 # UFW configuration
 - name: UFW ssh limit
   ufw:
-    rule: limit
+    rule: allow
     port: "{{ ansible_port | default('ssh') }}"
     proto: tcp
 
